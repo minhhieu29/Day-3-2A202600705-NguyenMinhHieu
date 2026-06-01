@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lab 3 — Chatbot vs ReAct Agent | Thuyết trình</title>
+  <base href="/present/" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <nav class="nav" aria-label="Điều hướng slide">
+    <button type="button" id="btnPrev" aria-label="Slide trước">←</button>
+    <span id="slideCounter">1 / 10</span>
+    <button type="button" id="btnNext" aria-label="Slide sau">→</button>
+    <a href="/" class="nav-demo" target="_blank">Mở Demo</a>
+  </nav>
+
+  <main class="deck" id="deck">
+    <!-- 1 -->
+    <section class="slide slide-hero active" data-slide="1">
+      <p class="eyebrow">Agentic AI · Lab 3</p>
+      <h1>Chatbot vs ReAct Agent</h1>
+      <p class="lead">Phân tích review đa nền tảng cho <strong>Sunrise Bay Resort</strong></p>
+      <p class="meta">Industry Edition — Telemetry · Tools · So sánh trực quan</p>
+      <p class="hint">Phím ← → hoặc vuốt để chuyển slide · <kbd>F</kbd> toàn màn hình</p>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide" data-slide="2">
+      <h2>Bài toán</h2>
+      <div class="two-col">
+        <div>
+          <p>Review rải rác trên TripAdvisor, Booking, Google, Agoda, mạng xã hội — <strong>không đọc hết được</strong>.</p>
+          <ul class="bullets">
+            <li>Phòng ồn, ăn sáng kém, check-in chậm — lặp lại nhiều lần</li>
+            <li>Điểm rating sụt khi vấn đề bị bỏ sót</li>
+            <li>Cần insight vận hành + trích dẫn cụ thể</li>
+          </ul>
+        </div>
+        <div class="card accent">
+          <h3>Phạm vi lab (thu gọn)</h3>
+          <p>Một resort · mock JSON · 3 tool · không crawl live</p>
+          <p class="small">20 review mẫu (EN + VI) trong <code>data/reviews_sunrise_bay.json</code></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide" data-slide="3">
+      <h2>Kiến trúc hệ thống</h2>
+      <div class="arch-diagram">
+        <div class="arch-box user">Người dùng / Web chat</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-row">
+          <div class="arch-box chatbot">Chatbot<br><small>1× LLM</small></div>
+          <div class="arch-box agent">ReAct Agent<br><small>N× LLM + tools</small></div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-box data">Tools → JSON reviews (local)</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-box log">Telemetry → logs/ (token, latency, trace)</div>
+      </div>
+      <p class="small center">Provider: OpenAI GPT-4o (đổi được Gemini / MiMo qua <code>.env</code>)</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide" data-slide="4">
+      <h2>ReAct loop</h2>
+      <div class="react-flow">
+        <div class="react-step"><span>1</span><strong>Thought</strong><p>Suy luận bước tiếp theo</p></div>
+        <div class="react-arrow">→</div>
+        <div class="react-step"><span>2</span><strong>Action</strong><p>Gọi tool</p></div>
+        <div class="react-arrow">→</div>
+        <div class="react-step"><span>3</span><strong>Observation</strong><p>Kết quả từ data</p></div>
+        <div class="react-arrow">→</div>
+        <div class="react-step highlight"><span>4</span><strong>Final Answer</strong><p>Trả lời tiếng Việt + quote</p></div>
+      </div>
+      <p class="center muted">Chatbot bỏ qua Action/Observation — trả lời một lần từ kiến thức LLM.</p>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide" data-slide="5">
+      <h2>3 Tools (Sunrise Bay)</h2>
+      <table class="table">
+        <thead>
+          <tr><th>Tool</th><th>Chức năng</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>search_reviews</code></td><td>Lọc review theo khía cạnh / từ khóa</td></tr>
+          <tr><td><code>sentiment_summary</code></td><td>Positive / negative / neutral theo aspect</td></tr>
+          <tr><td><code>top_issues</code></td><td>Top phàn nàn lặp lại + trích dẫn</td></tr>
+        </tbody>
+      </table>
+      <p class="small">Tool chạy <strong>local</strong> — không tốn API. Chỉ LLM tốn token.</p>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide" data-slide="6">
+      <h2>Chatbot vs ReAct Agent</h2>
+      <table class="table compare">
+        <thead>
+          <tr><th></th><th>Chatbot</th><th>ReAct Agent</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lần gọi LLM</td><td>1</td><td>2+</td></tr>
+          <tr><td>Dữ liệu review</td><td>Không đọc file</td><td>Có (qua tool)</td></tr>
+          <tr><td>Trích dẫn khách</td><td>Thường thiếu / chung chung</td><td>Có từ JSON</td></tr>
+          <tr><td>Trace minh bạch</td><td>Không</td><td>Thought / Action / Observation</td></tr>
+          <tr><td>Token / chi phí</td><td>Thấp hơn</td><td>Cao hơn — đổi lấy độ tin cậy</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide" data-slide="7">
+      <h2>Telemetry & đánh giá</h2>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Token</h3>
+          <p>prompt / completion / total — log <code>LLM_METRIC</code></p>
+        </div>
+        <div class="metric-card">
+          <h3>Latency</h3>
+          <p>Thời gian wall + từng vòng LLM</p>
+        </div>
+        <div class="metric-card">
+          <h3>Cost (ước tính)</h3>
+          <p>Bảng giá GPT-4o trong code</p>
+        </div>
+        <div class="metric-card">
+          <h3>Chất lượng</h3>
+          <p>Bảng 5–10 câu test · success rate · trace lỗi (RCA)</p>
+        </div>
+      </div>
+      <p class="center">Triết lý lab: <em>Fail early, learn fast</em> — phân tích trace lỗi quan trọng như code chạy.</p>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide" data-slide="8">
+      <h2>Agent v1 → v2</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>v1</h3>
+          <p>ReAct loop + 3 tool + prompt cơ bản</p>
+        </div>
+        <div class="card">
+          <h3>v2</h3>
+          <p>Sửa sau RCA: parse Action, mô tả tool, prompt tiếng Việt, <code>max_steps</code></p>
+        </div>
+      </div>
+      <ul class="bullets">
+        <li>Lỗi thường gặp: parse JSON Action · hallucinate tool · 503 Gemini / quota</li>
+        <li>Ablation: so % lỗi giảm sau chỉnh prompt</li>
+      </ul>
+    </section>
+
+    <!-- 9 -->
+    <section class="slide slide-demo" data-slide="9">
+      <h2>Demo trực tiếp</h2>
+      <p class="lead">Giao diện chat + sidebar metrics</p>
+      <div class="demo-links">
+        <a href="/" class="btn-primary" target="_blank">💬 Mở Demo Chat</a>
+        <span class="demo-url">http://127.0.0.1:5000</span>
+      </div>
+      <ol class="demo-steps">
+        <li>Chọn <strong>Chatbot</strong> → gửi câu hỏi → xem trả lời chung</li>
+        <li>Chọn <strong>ReAct Agent</strong> → cùng câu → xem trace + quote</li>
+        <li><strong>So sánh cả hai</strong> → token & cost sidebar</li>
+      </ol>
+      <p class="small">Chạy server: <code>python app/server.py</code></p>
+    </section>
+
+    <!-- 10 -->
+    <section class="slide slide-end" data-slide="10">
+      <h2>Kết luận</h2>
+      <ul class="bullets large">
+        <li>ReAct phù hợp câu <strong>đa bước</strong> cần dữ liệu và trích dẫn</li>
+        <li>Chatbot đủ cho Q&A đơn giản, rẻ và nhanh</li>
+        <li>Telemetry giúp đo và bảo vệ chi phí production</li>
+      </ul>
+      <p class="thanks">Cảm ơn — Q&A</p>
+    </section>
+  </main>
+
+  <script src="slides.js"></script>
+</body>
+</html>

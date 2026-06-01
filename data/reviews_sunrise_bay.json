@@ -1,0 +1,22 @@
+[
+  {"id": "sb-001", "platform": "TripAdvisor", "rating": 2, "aspect": "room", "lang": "en", "text": "Room 302 was terribly noisy at night. Could hear traffic until 2am."},
+  {"id": "sb-002", "platform": "Booking", "rating": 2, "aspect": "room", "lang": "en", "text": "Thin walls between rooms. Neighbors' TV was loud after midnight."},
+  {"id": "sb-003", "platform": "Google", "rating": 3, "aspect": "room", "lang": "vi", "text": "Phòng đẹp nhưng ồn, cửa sổ hướng đường nên ngủ khó."},
+  {"id": "sb-004", "platform": "Agoda", "rating": 2, "aspect": "breakfast", "lang": "en", "text": "Breakfast buffet felt cheap. Limited fresh fruit and cold eggs."},
+  {"id": "sb-005", "platform": "TripAdvisor", "rating": 2, "aspect": "breakfast", "lang": "vi", "text": "Ăn sáng nghèo nàn, ít món địa phương, phục vụ chậm."},
+  {"id": "sb-006", "platform": "Google", "rating": 3, "aspect": "breakfast", "lang": "en", "text": "Breakfast okay but not worth the resort price. Coffee was weak."},
+  {"id": "sb-007", "platform": "Booking", "rating": 2, "aspect": "checkin", "lang": "en", "text": "Check-in took 45 minutes. Only one staff at the desk on Friday."},
+  {"id": "sb-008", "platform": "TripAdvisor", "rating": 1, "aspect": "checkin", "lang": "vi", "text": "Nhận phòng chậm, đợi 40 phút dù đã booking trước."},
+  {"id": "sb-009", "platform": "Agoda", "rating": 4, "aspect": "service", "lang": "en", "text": "Housekeeping was friendly and room was cleaned well daily."},
+  {"id": "sb-010", "platform": "Google", "rating": 5, "aspect": "amenities", "lang": "en", "text": "Pool and spa area are beautiful. Kids loved the slide."},
+  {"id": "sb-011", "platform": "Booking", "rating": 4, "aspect": "value", "lang": "en", "text": "Decent value for weekend but breakfast and noise issues hurt the stay."},
+  {"id": "sb-012", "platform": "TripAdvisor", "rating": 2, "aspect": "room", "lang": "en", "text": "Air conditioning rattled all night in room 210."},
+  {"id": "sb-013", "platform": "Google", "rating": 3, "aspect": "service", "lang": "vi", "text": "Nhân viên lễ tân nhiệt tình nhưng xử lý check-in vẫn lâu."},
+  {"id": "sb-014", "platform": "Agoda", "rating": 2, "aspect": "breakfast", "lang": "en", "text": "Same breakfast menu two days in a row. Very disappointing."},
+  {"id": "sb-015", "platform": "Facebook", "rating": 2, "aspect": "room", "lang": "vi", "text": "Phòng ồn, thiếu cách âm, không ngủ được cuối tuần."},
+  {"id": "sb-016", "platform": "TripAdvisor", "rating": 4, "aspect": "amenities", "lang": "en", "text": "Gym equipment modern. Beach access convenient."},
+  {"id": "sb-017", "platform": "Booking", "rating": 3, "aspect": "checkin", "lang": "en", "text": "Slow check-in again on Sunday. Need more front desk staff."},
+  {"id": "sb-018", "platform": "Google", "rating": 2, "aspect": "breakfast", "lang": "vi", "text": "Buffet sáng ít lựa chọn cho trẻ em, bánh mì khô."},
+  {"id": "sb-019", "platform": "Agoda", "rating": 5, "aspect": "service", "lang": "en", "text": "Concierge helped book tours quickly. Excellent attitude."},
+  {"id": "sb-020", "platform": "TripAdvisor", "rating": 3, "aspect": "value", "lang": "en", "text": "Price high for what you get. Noise and breakfast are recurring themes in reviews."}
+]

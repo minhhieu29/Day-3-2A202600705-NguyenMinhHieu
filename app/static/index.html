@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sunrise Bay — Review Assistant</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <section class="chat-panel">
+      <header class="chat-header">
+        <div>
+          <h1>Sunrise Bay Resort</h1>
+          <p class="subtitle">Trợ lý phân tích review khách — Chatbot vs ReAct</p>
+        </div>
+        <a href="/present/" class="link-present" target="_blank">📊 Thuyết trình</a>
+      </header>
+
+      <div id="messages" class="messages" aria-live="polite">
+        <div class="msg msg-system">
+          Chào bạn. Nhập câu hỏi bất kỳ về review (phòng, ăn sáng, check-in…), chọn chế độ bên phải rồi bấm <strong>Gửi</strong>.
+        </div>
+      </div>
+
+      <footer class="composer">
+        <div class="composer-hints">
+          <button type="button" class="hint-chip" data-hint="0">Phòng &amp; ăn sáng</button>
+          <button type="button" class="hint-chip" data-hint="1">Top 3 vấn đề</button>
+          <button type="button" class="hint-chip" data-hint="2">Sentiment breakfast</button>
+          <button type="button" class="hint-chip" data-hint="3">Check-in chậm?</button>
+        </div>
+        <div class="composer-row">
+          <textarea
+            id="questionInput"
+            rows="2"
+            placeholder="Nhập câu hỏi của bạn..."
+            aria-label="Câu hỏi"
+          ></textarea>
+          <button type="button" id="btnSend" class="btn-send" title="Gửi (Enter)">
+            Gửi
+          </button>
+        </div>
+        <p class="composer-note">Enter để gửi · Shift+Enter xuống dòng</p>
+      </footer>
+    </section>
+
+    <aside class="sidebar">
+      <section class="sidebar-block">
+        <h2>Cấu hình</h2>
+        <div id="config" class="config-box">Đang tải...</div>
+      </section>
+
+      <section class="sidebar-block">
+        <h2>Chế độ trả lời</h2>
+        <div class="mode-group" role="radiogroup" aria-label="Chế độ">
+          <label class="mode-option">
+            <input type="radio" name="mode" value="chatbot" />
+            <span>💬 Chatbot</span>
+            <small>1 lần LLM, không tool</small>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="mode" value="agent" checked />
+            <span>🔄 ReAct Agent</span>
+            <small>Thought → Action → Observation</small>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="mode" value="compare" />
+            <span>⚡ So sánh cả hai</span>
+            <small>2 câu trả lời trong chat</small>
+          </label>
+        </div>
+        <label class="steps-label">
+          Agent max steps
+          <input type="number" id="maxSteps" value="6" min="3" max="10" />
+        </label>
+      </section>
+
+      <section class="sidebar-block">
+        <h2>Chỉ số lần gửi gần nhất</h2>
+        <div id="metricsPanel" class="metrics-panel">
+          <p class="muted">Chưa có dữ liệu — hãy gửi một câu hỏi.</p>
+        </div>
+      </section>
+
+      <section class="sidebar-block" id="traceSection" hidden>
+        <h2>ReAct trace</h2>
+        <pre id="tracePanel" class="trace-panel"></pre>
+      </section>
+    </aside>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

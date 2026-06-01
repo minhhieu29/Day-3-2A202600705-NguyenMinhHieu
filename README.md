@@ -15,8 +15,69 @@ cp .env.example .env
 pip install -r requirements.txt
 ```
 
-### 3. Directory Structure
-- `src/tools/`: Extension point for your custom tools.
+### 3. LLM providers (switch in `.env`)
+
+| `DEFAULT_PROVIDER` | Key | Model example |
+|--------------------|-----|----------------|
+| `mimo` | `MIMO_API_KEY` | `mimo-v2.5-pro` |
+| `openai` | `OPENAI_API_KEY` | `gpt-4o` |
+| `google` | `GEMINI_API_KEY` | `gemini-2.5-flash` |
+
+```bash
+python scripts/test_provider.py mimo
+python scripts/test_provider.py google   # rubric: demo provider switch
+```
+
+MiMo uses an OpenAI-compatible client (`base_url=https://api.xiaomimimo.com/v1`). Chatbot and agent use the same `get_llm_from_env()` — only the LLM backend changes.
+
+### 4. Directory Structure
+- `src/tools/`: Resort review tools (mock multi-platform data).
+- `data/reviews_sunrise_bay.json`: Mock reviews for **Sunrise Bay Resort** only.
+
+## 🏨 Resort domain (team project)
+
+**Problem:** Guest reviews on TripAdvisor, Booking, Google, Agoda, social — recurring issues (noisy rooms, weak breakfast, slow check-in) are missed until ratings drop.
+
+**Lab scope (mock data, one resort, no crawling):** ReAct agent calls tools to search reviews, summarize sentiment by aspect, and list top issues with quotes.
+
+```bash
+python scripts/test_provider.py
+python -m pytest tests/test_resort_tools.py -q
+python scripts/run_chatbot.py "Khách phàn nàn gì về phòng và ăn sáng?"
+python scripts/run_agent.py
+```
+
+### Web UI — so sánh Chatbot vs ReAct
+
+**HTML (khuyên dùng):**
+
+```bash
+pip install flask
+python app/server.py
+```
+
+Mở trình duyệt:
+
+| URL | Mục đích |
+|-----|----------|
+| **http://127.0.0.1:5000/** | Demo chat (so sánh Chatbot vs ReAct) |
+| **http://127.0.0.1:5000/present/** | **Web thuyết trình** (10 slide, phím ← →) |
+
+**Lỗi 404?** Phải chạy `python app/server.py` (không mở file HTML trực tiếp, không dùng Streamlit cho slide). Sau khi sửa code, **tắt server cũ (Ctrl+C) và chạy lại**.
+
+**Streamlit (tuỳ chọn):**
+
+```bash
+streamlit run app/demo.py
+```
+
+Test cases: `tests/test_cases_resort.txt`. Logs: `logs/`.
+
+| Tool | Purpose |
+|------|---------|
+| `search_reviews` | Filter by aspect / keyword |
+| `sentiment_summary` | Positive / negative / neutral counts |
+| `top_issues` | Recurring complaints + quotes |
 
 ## 🏠 Running with Local Models (CPU)
 

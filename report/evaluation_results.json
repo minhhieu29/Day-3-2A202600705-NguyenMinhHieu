@@ -1,0 +1,154 @@
+{
+  "n_cases": 5,
+  "chatbot_success": 0,
+  "agent_success": 4,
+  "chatbot_avg_tokens": 252,
+  "agent_avg_tokens": 1880,
+  "chatbot_avg_latency_ms": 2474,
+  "agent_avg_latency_ms": 4762,
+  "chatbot_avg_cost": 0.001797,
+  "agent_avg_cost": 0.006714,
+  "agent_avg_tool_calls": 1.6,
+  "total_cost_compare": 0.042555,
+  "agent_latencies": [
+    2948,
+    3328,
+    4932,
+    5022,
+    7578
+  ],
+  "results": [
+    {
+      "question": "Khách phàn nàn gì về phòng tại Sunrise Bay? Có trích dẫn không?",
+      "chatbot": {
+        "prompt_tokens": 95,
+        "completion_tokens": 118,
+        "total_tokens": 213,
+        "cost_estimate": 0.001417,
+        "llm_calls": 1,
+        "llm_latency_ms": 3128,
+        "latency_ms": 3128,
+        "ok": false,
+        "answer_preview": "Tôi không có quyền truy cập vào cơ sở dữ liệu hoặc đánh giá thực tế, nên không thể cung cấp chi tiết cụ thể hoặc trích dẫn trực tiếp từ các đánh giá của khách. Tuy nhiên, trong ngành khách sạn, một số"
+      },
+      "agent": {
+        "prompt_tokens": 1118,
+        "completion_tokens": 178,
+        "total_tokens": 1296,
+        "cost_estimate": 0.004575,
+        "llm_calls": 2,
+        "llm_latency_ms": 2946,
+        "latency_ms": 2948,
+        "tool_calls": 1,
+        "ok": true,
+        "answer_preview": "Khách hàng tại Sunrise Bay Resort có một số phàn nàn chính về phòng. Một số vấn đề lớn nhất được đề cập bao gồm tiếng ồn trong phòng, như tại phòng 302 có tiếng ồn từ giao thông vào ban đêm và không c"
+      }
+    },
+    {
+      "question": "Ăn sáng được đánh giá thế nào? Tóm tắt sentiment khía cạnh breakfast.",
+      "chatbot": {
+        "prompt_tokens": 95,
+        "completion_tokens": 100,
+        "total_tokens": 195,
+        "cost_estimate": 0.001238,
+        "llm_calls": 1,
+        "llm_latency_ms": 1427,
+        "latency_ms": 1428,
+        "ok": false,
+        "answer_preview": "Tôi không có thông tin chi tiết từ cơ sở dữ liệu đánh giá, nhưng về tổng thể, bữa sáng ở các resort thường được đánh giá dựa trên đa dạng món ăn, chất lượng thực phẩm, dịch vụ và sự tiện lợi. Nếu bạn "
+      },
+      "agent": {
+        "prompt_tokens": 866,
+        "completion_tokens": 184,
+        "total_tokens": 1050,
+        "cost_estimate": 0.004005,
+        "llm_calls": 2,
+        "llm_latency_ms": 5020,
+        "latency_ms": 5022,
+        "tool_calls": 1,
+        "ok": false,
+        "answer_preview": "Đánh giá tổng quan về bữa sáng tại Sunrise Bay Resort cho thấy cảm nhận tiêu cực từ khách hàng. Tất cả 5 đánh giá đều thiếu hài lòng và điểm trung bình chỉ đạt 2.2 trên 5. Đây là một khía cạnh cần đượ"
+      }
+    },
+    {
+      "question": "Top 3 vấn đề lặp lại nhất từ review tiêu cực là gì?",
+      "chatbot": {
+        "prompt_tokens": 92,
+        "completion_tokens": 203,
+        "total_tokens": 295,
+        "cost_estimate": 0.00226,
+        "llm_calls": 1,
+        "llm_latency_ms": 3278,
+        "latency_ms": 3281,
+        "ok": false,
+        "answer_preview": "Xin lỗi, tôi không thể truy cập vào cơ sở dữ liệu hoặc các đánh giá cụ thể để xác định chính xác các vấn đề lặp lại. Tuy nhiên, dựa trên kinh nghiệm chung trong ngành khách sạn, ba vấn đề tiêu cực thư"
+      },
+      "agent": {
+        "prompt_tokens": 1034,
+        "completion_tokens": 239,
+        "total_tokens": 1273,
+        "cost_estimate": 0.004975,
+        "llm_calls": 2,
+        "llm_latency_ms": 3325,
+        "latency_ms": 3328,
+        "tool_calls": 1,
+        "ok": true,
+        "answer_preview": "Ba vấn đề lặp lại nhất từ các review tiêu cực tại Sunrise Bay Resort là: \n1. Vấn đề về phòng (room): Khách hàng phàn nàn về tiếng ồn từ bên ngoài và vấn đề cách âm giữa các phòng. Ví dụ: \"Room 302 was"
+      }
+    },
+    {
+      "question": "Check-in chậm có phải vấn đề lặp lại không? Tìm review liên quan.",
+      "chatbot": {
+        "prompt_tokens": 95,
+        "completion_tokens": 154,
+        "total_tokens": 249,
+        "cost_estimate": 0.001778,
+        "llm_calls": 1,
+        "llm_latency_ms": 2089,
+        "latency_ms": 2090,
+        "ok": false,
+        "answer_preview": "Tôi không thể truy cập vào cơ sở dữ liệu review để kiểm tra chi tiết về vấn đề check-in chậm tại Sunrise Bay Resort. Tuy nhiên, nếu check-in chậm là vấn đề lặp lại, bạn có thể cân nhắc các giải pháp n"
+      },
+      "agent": {
+        "prompt_tokens": 2052,
+        "completion_tokens": 275,
+        "total_tokens": 2327,
+        "cost_estimate": 0.00788,
+        "llm_calls": 3,
+        "llm_latency_ms": 4928,
+        "latency_ms": 4932,
+        "tool_calls": 2,
+        "ok": true,
+        "answer_preview": "Vấn đề \"check-in chậm\" tại Sunrise Bay Resort đã được ghi nhận là một vấn đề lặp lại. Có 3 phàn nàn từ khách hàng, trong đó có các nhận xét chỉ ra việc phải đợi 40-45 phút để nhận phòng và thường xuyê"
+      }
+    },
+    {
+      "question": "Khách phàn nàn gì về phòng và ăn sáng? Trích dẫn cụ thể. Đề xuất 2 ưu tiên cải thiện.",
+      "chatbot": {
+        "prompt_tokens": 105,
+        "completion_tokens": 203,
+        "total_tokens": 308,
+        "cost_estimate": 0.002292,
+        "llm_calls": 1,
+        "llm_latency_ms": 2441,
+        "latency_ms": 2442,
+        "ok": false,
+        "answer_preview": "Tôi không có quyền truy cập vào cơ sở dữ liệu đánh giá cụ thể nên không thể trích dẫn những phàn nàn cụ thể từ khách hàng. Tuy nhiên, những phàn nàn thường gặp về phòng có thể bao gồm sự sạch sẽ, mùi "
+      },
+      "agent": {
+        "prompt_tokens": 2990,
+        "completion_tokens": 466,
+        "total_tokens": 3456,
+        "cost_estimate": 0.012135,
+        "llm_calls": 4,
+        "llm_latency_ms": 7574,
+        "latency_ms": 7578,
+        "tool_calls": 3,
+        "ok": true,
+        "answer_preview": "Khách hàng đã phàn nàn về hai khía cạnh cụ thể liên quan đến phòng ở và bữa sáng tại Sunrise Bay Resort. Đối với phòng, vấn đề chính là tiếng ồn từ giao thông và từ phòng bên cạnh, như trích dẫn: \"Roo"
+      }
+    }
+  ],
+  "agent_p50_ms": 4932,
+  "agent_p99_ms": 7578
+}

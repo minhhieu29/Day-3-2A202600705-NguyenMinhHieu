@@ -26,10 +26,19 @@ class PerformanceTracker:
         logger.log_event("LLM_METRIC", metric)
 
     def _calculate_cost(self, model: str, usage: Dict[str, int]) -> float:
-        """
-        TODO: Implement real pricing logic.
-        For now, returns a dummy constant.
-        """
+        """USD estimate (lab). Override via per-1M-token table when model is known."""
+        prompt = usage.get("prompt_tokens", 0)
+        completion = usage.get("completion_tokens", 0)
+        # OpenAI GPT-4o list prices (USD / 1M tokens) — check openai.com/api/pricing for production
+        rates = {
+            "gpt-4o": (2.50, 10.00),
+            "gpt-4o-mini": (0.15, 0.60),
+            "gpt-3.5-turbo": (0.50, 1.50),
+        }
+        key = model if model in rates else model.split(":")[0] if ":" in model else model
+        if key in rates:
+            inp, out = rates[key]
+            return (prompt * inp + completion * out) / 1_000_000
         return (usage.get("total_tokens", 0) / 1000) * 0.01
 
 # Global tracker instance

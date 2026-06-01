@@ -1,0 +1,7 @@
+# Resort lab — Sunrise Bay only
+
+Khách phàn nàn gì về phòng tại Sunrise Bay? Có trích dẫn không?
+Ăn sáng được đánh giá thế nào? Tóm tắt sentiment khía cạnh breakfast.
+Top 3 vấn đề lặp lại nhất từ review tiêu cực là gì?
+Check-in chậm có phải vấn đề lặp lại không? Tìm review liên quan.
+Khách phàn nàn gì về phòng và ăn sáng? Trích dẫn cụ thể. Đề xuất 2 ưu tiên cải thiện.

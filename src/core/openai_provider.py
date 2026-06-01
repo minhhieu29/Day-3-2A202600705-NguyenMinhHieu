@@ -4,9 +4,21 @@ from openai import OpenAI
 from src.core.llm_provider import LLMProvider
 
 class OpenAIProvider(LLMProvider):
-    def __init__(self, model_name: str = "gpt-4o", api_key: Optional[str] = None):
+    """OpenAI API or any OpenAI-compatible endpoint (custom base_url)."""
+
+    def __init__(
+        self,
+        model_name: str = "gpt-4o",
+        api_key: Optional[str] = None,
+        base_url: Optional[str] = None,
+        provider_label: str = "openai",
+    ):
         super().__init__(model_name, api_key)
-        self.client = OpenAI(api_key=self.api_key)
+        self.provider_label = provider_label
+        client_kwargs: Dict[str, Any] = {"api_key": self.api_key}
+        if base_url:
+            client_kwargs["base_url"] = base_url
+        self.client = OpenAI(**client_kwargs)
 
     def generate(self, prompt: str, system_prompt: Optional[str] = None) -> Dict[str, Any]:
         start_time = time.time()
@@ -36,7 +48,7 @@ class OpenAIProvider(LLMProvider):
             "content": content,
             "usage": usage,
             "latency_ms": latency_ms,
-            "provider": "openai"
+            "provider": self.provider_label,
         }
 
     def stream(self, prompt: str, system_prompt: Optional[str] = None) -> Generator[str, None, None]:
